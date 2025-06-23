@@ -1,24 +1,35 @@
 :root {
-    --clr-neutral-100: #e8eef3;
-    --clr-neutral-200: #d6dbe0;
-    --clr-neutral-300: #282b2b;
-    --clr-neutral-400: #252828;
-    --clr-accent: #fa1721;
-    @media (prefers-color-scheme: dark) {
-        --body-bg: var(--clr-neutral-400);
-        --body-text: var(--clr-neutral-100);
-        --card-bg: var(--clr-neutral-300);
-        --card-text: var(--clr-neutral-100);
-        --input-bg: var(--clr-neutral-200);
-        --input-text: var(--clr-neutral-300);
-    }
     @media (prefers-color-scheme: light) {
-        --body-bg: var(--clr-neutral-200);
-        --body-text: var(--clr-neutral-300);
-        --card-bg: var(--clr-neutral-100);
-        --card-text: var(--clr-neutral-300);
-        --input-bg: var(--clr-neutral-100);
-        --input-text: var(--clr-neutral-300);
+        --color-canvas: #f2eef0;
+        --color-card: #f8f5f6;
+        --color-accent-bg-100: rgb(124 99 109 / 0.083);
+        --color-accent-bg-300: rgb(124 99 109 / 0.736);
+        --color-accent-bg-400: #a68592;
+        --color-accent-bg-600: #7c636d;
+        --color-accent-fg-300: rgb(97 75 84 / 0.804);
+        --color-accent-fg-400: #886a76;
+        --color-accent-fg-600: #614b54;
+        --color-neutral-bg-100: rgb(51 48 49 / 0.059);
+        --color-neutral-bg-300: rgb(51 48 49 / 0.524);
+        --color-neutral-bg-600: #333031;
+        --color-neutral-fg-300: rgb(38 35 36 / 0.632);
+        --color-neutral-fg-600: #262324;
+    }
+    @media (prefers-color-scheme: dark) {
+        --color-canvas: #262324;
+        --color-card: #2a2728;
+        --color-accent-bg-100: rgb(161 147 152 / 0.068);
+        --color-accent-bg-300: rgb(161 147 152 / 0.657);
+        --color-accent-bg-400: #806c74;
+        --color-accent-bg-600: #a19398;
+        --color-accent-fg-300: rgb(193 179 185 / 0.715);
+        --color-accent-fg-400: #9d8790;
+        --color-accent-fg-600: #c1b3b9;
+        --color-neutral-bg-100: rgb(184 183 184 / 0.052);
+        --color-neutral-bg-300: rgb(184 183 184 / 0.507);
+        --color-neutral-bg-600: #b8b7b8;
+        --color-neutral-fg-300: rgb(223 221 222 / 0.562);
+        --color-neutral-fg-600: #dfddde;
     }
 }
 
@@ -28,12 +39,12 @@ html {
 
 body {
     block-size: 100%;
-    background-color: var(--body-bg);
-    color: var(--body-text);
+    background-color: var(--color-canvas);
+    color: var(--color-neutral-fg-600);
     line-height: 1.5;
 }
 
-:empty:where(p, ul) {
+:empty:where(p, ul, ol) {
     display: none;
 }
 
@@ -41,23 +52,26 @@ body {
     &:where(:focus-visible) {
         --outline-size: max(0.125rem, 0.15em);
 
-        outline: var(--outline-size) dotted var(--clr-accent);
+        outline: var(--outline-size) dotted var(--color-accent-bg-300);
         outline-offset: var(--outline-size);
     }
 }
 
 h1 {
-    color: var(--clr-accent);
+    color: var(--color-accent-fg-400);
     line-height: 1.5;
 }
 
 :where(input, select) {
     padding: 0.5em;
-    border: 1px solid var(--input-text);
     border-radius: 0.25em;
-    background-color: var(--input-bg);
-    color: var(--input-text);
+    background-color: var(--color-card);
+    box-shadow: inset 0 0 0 1px var(--color-neutral-bg-300);
     line-height: 1.2;
+
+    &:where(:focus-visible, :hover) {
+        background-color: var(--color-neutral-bg-100);
+    }
 }
 
 form {
@@ -68,11 +82,19 @@ form {
     button {
         grid-column: span 2;
         padding: 0.5em 1.5em;
-        background-color: var(--clr-accent);
-        color: var(--clr-neutral-100);
+        background-color: var(--color-accent-bg-100);
+        color: var(--color-accent-fg-600);
         text-align: center;
         text-transform: uppercase;
         cursor: pointer;
+
+        &:where(:hover, :focus-visible) {
+            background-color: color-mix(
+                in oklab,
+                var(--color-accent-bg-100),
+                transparent 50%
+            );
+        }
     }
 }
 
@@ -83,6 +105,35 @@ form {
 
 .card {
     padding: 1em 1.5em;
-    background-color: var(--card-bg);
-    color: var(--card-text);
+    background-color: var(--color-card);
+}
+
+#alert {
+    color: var(--color-accent-fg-300);
+}
+
+#result {
+    counter-reset: orderedlist;
+
+    &:has(li) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+        gap: 0.5em 1em;
+    }
+
+    li {
+        &::before {
+            content: counter(orderedlist);
+            display: inline-block;
+            block-size: 1.5em;
+            margin-inline-end: 0.5em;
+            border-radius: 50%;
+            background-color: var(--color-accent-bg-400);
+            color: var(--color-neutral-fg-600);
+            font-size: 0.75em;
+            text-align: center;
+            counter-increment: orderedlist;
+            aspect-ratio: 1;
+        }
+    }
 }
