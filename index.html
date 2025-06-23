@@ -8,12 +8,18 @@
     <body>
         <h1>Words search</h1>
         <form>
-            <label for="letters">Letters</label>
-            <input id="letters" name="letters" required />
-            <label for="required-letter">Letter the word must contain</label>
-            <input id="required-letter" name="required-letter" />
-            <label for="length">Minimum word length</label>
-            <input id="length" type="number" min="3" name="length" />
+            <div class="form-control">
+              <label for="letters">Letters</label>
+              <input id="letters" name="letters" required />
+            </div>
+            <div class="form-control">
+              <label for="required-letter">Letter the word must contain</label>
+              <input id="required-letter" name="required-letter" />
+            </div>
+            <div class="form-control">
+              <label for="length">Minimum word length</label>
+              <input id="length" type="number" min="3" name="length" />
+            </div>
             <button type="submit">Submit</button>
         </form>
         <label for="sorting">Sorting</label>

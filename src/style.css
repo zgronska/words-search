@@ -1,0 +1,41 @@
+:root {
+    --clr-neutral-100: #e8eef3;
+    --clr-neutral-200: #d6dbe0;
+    --clr-neutral-300: #282b2b;
+    --clr-neutral-400: #252828;
+    --clr-accent: #fa1721;
+    @media (prefers-color-scheme: dark) {
+        --body-bg: var(--clr-neutral-400);
+        --body-text: var(--clr-neutral-100);
+        --card-bg: var(--clr-neutral-300);
+        --card-text: var(--clr-neutral-100);
+        --input-bg: var(--clr-neutral-200);
+        --input-text: var(--clr-neutral-300);
+    }
+    @media (prefers-color-scheme: light) {
+        --body-bg: var(--clr-neutral-200);
+        --body-text: var(--clr-neutral-300);
+        --card-bg: var(--clr-neutral-100);
+        --card-text: var(--clr-neutral-300);
+        --input-bg: var(--clr-neutral-100);
+        --input-text: var(--clr-neutral-300);
+    }
+}
+
+html {
+    block-size: 100%;
+}
+
+body {
+    block-size: 100%;
+    background-color: var(--body-bg);
+    color: var(--body-text);
+}
+
+:where(input, select) {
+    padding: 0.5rem;
+    border: 1px solid var(--input-text);
+    border-radius: 0.25rem;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
