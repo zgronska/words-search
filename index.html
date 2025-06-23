@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words search</title>
+  </head>
+  <body>
+    <h1>Words search</h1>
+    <form>
+      <label for="letters">Letters</label>
+      <input id="letters" name="letters" required>
+      <label for="required-letter">Letter the word must contain</label>
+      <input id="required-letter" name="required-letter">
+      <label for="length">Word length</label>
+      <input id="length" type="number" min="3" name="length" required>
+      <button type="submit">Submit</button>
+    </form>
+    <ul id="result"></ul>
+    <script src="script.js"></script>
+  </body>
+</html>
