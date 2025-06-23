@@ -1,3 +1,5 @@
+import 'the-new-css-reset/css/reset.css'
+import './style.css'
 import words from 'an-array-of-english-words'
 
 const form = document.querySelector('form')

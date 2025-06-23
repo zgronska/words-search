@@ -1,33 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Words search</title>
-  </head>
-  <body>
-    <div id="app">
-      <h1>Words search</h1>
-    <form>
-      <label for="letters">Letters</label>
-      <input id="letters" name="letters" required>
-      <label for="required-letter">Letter the word must contain</label>
-      <input id="required-letter" name="required-letter">
-      <label for="length">Minimum word length</label>
-      <input id="length" type="number" min="3" name="length">
-      <button type="submit">Submit</button>
-    </form>
-    <label for="sorting">Sorting</label>
-    <select name="sorting" id="sorting">
-      <option value="alphabetical-asc">Alphabetical (asc)</option>
-      <option value="alphabetical-desc">Alphabetical (desc)</option>
-      <option value="length-asc">Length (asc)</option>
-      <option value="length-desc">Length (desc)</option>
-    </select>
-    <ul id="result"></ul>
-    <p id="alert"></p>
-    </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Words search</title>
+    </head>
+    <body>
+        <h1>Words search</h1>
+        <form>
+            <label for="letters">Letters</label>
+            <input id="letters" name="letters" required />
+            <label for="required-letter">Letter the word must contain</label>
+            <input id="required-letter" name="required-letter" />
+            <label for="length">Minimum word length</label>
+            <input id="length" type="number" min="3" name="length" />
+            <button type="submit">Submit</button>
+        </form>
+        <label for="sorting">Sorting</label>
+        <select name="sorting" id="sorting">
+            <option value="alphabetical-asc">Alphabetical (asc)</option>
+            <option value="alphabetical-desc">Alphabetical (desc)</option>
+            <option value="length-asc">Length (asc)</option>
+            <option value="length-desc">Length (desc)</option>
+        </select>
+        <ul id="result"></ul>
+        <p id="alert"></p>
+        <script type="module" src="/src/main.js"></script>
+    </body>
 </html>
