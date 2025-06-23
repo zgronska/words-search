@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Words search</h1>
-        <form>
+        <form class="card"> 
             <div class="form-control">
               <label for="letters">Letters</label>
               <input id="letters" name="letters" required />
@@ -22,15 +22,19 @@
             </div>
             <button type="submit">Submit</button>
         </form>
-        <label for="sorting">Sorting</label>
-        <select name="sorting" id="sorting">
-            <option value="alphabetical-asc">Alphabetical (asc)</option>
-            <option value="alphabetical-desc">Alphabetical (desc)</option>
-            <option value="length-asc">Length (asc)</option>
-            <option value="length-desc">Length (desc)</option>
-        </select>
-        <ul id="result"></ul>
-        <p id="alert"></p>
+        <div class="results card">
+          <div class="form-control">
+            <label for="sorting">Sorting</label>
+            <select name="sorting" id="sorting">
+          </div>
+              <option value="alphabetical-asc">Alphabetical (asc)</option>
+              <option value="alphabetical-desc">Alphabetical (desc)</option>
+              <option value="length-asc">Length (asc)</option>
+              <option value="length-desc">Length (desc)</option>
+          </select>
+          <ul id="result"></ul>
+          <p id="alert"></p>
+        </div>
         <script type="module" src="/src/main.js"></script>
     </body>
 </html>

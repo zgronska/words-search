@@ -30,12 +30,59 @@ body {
     block-size: 100%;
     background-color: var(--body-bg);
     color: var(--body-text);
+    line-height: 1.5;
+}
+
+:empty:where(p, ul) {
+    display: none;
+}
+
+:where(input, select, button) {
+    &:where(:focus-visible) {
+        --outline-size: max(0.125rem, 0.15em);
+
+        outline: var(--outline-size) dotted var(--clr-accent);
+        outline-offset: var(--outline-size);
+    }
+}
+
+h1 {
+    color: var(--clr-accent);
+    line-height: 1.5;
 }
 
 :where(input, select) {
-    padding: 0.5rem;
+    padding: 0.5em;
     border: 1px solid var(--input-text);
-    border-radius: 0.25rem;
+    border-radius: 0.25em;
     background-color: var(--input-bg);
     color: var(--input-text);
+    line-height: 1.2;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+
+    button {
+        grid-column: span 2;
+        padding: 0.5em 1.5em;
+        background-color: var(--clr-accent);
+        color: var(--clr-neutral-100);
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+}
+
+.form-control {
+    display: grid;
+    gap: 0.5em;
+}
+
+.card {
+    padding: 1em 1.5em;
+    background-color: var(--card-bg);
+    color: var(--card-text);
 }
