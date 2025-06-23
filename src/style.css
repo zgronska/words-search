@@ -38,10 +38,20 @@ html {
 }
 
 body {
+    display: grid;
     block-size: 100%;
     background-color: var(--color-canvas);
     color: var(--color-neutral-fg-600);
     line-height: 1.5;
+    place-items: center;
+}
+
+.container {
+    inline-size: min(100% - 2em, 50em);
+
+    > * + * {
+        margin-block-start: 1.5em;
+    }
 }
 
 :empty:where(p, ul, ol) {
@@ -62,6 +72,16 @@ h1 {
     line-height: 1.5;
 }
 
+.form-control {
+    display: grid;
+    gap: 0.5em;
+}
+
+.card {
+    padding: 1em 1.5em;
+    background-color: var(--color-card);
+}
+
 :where(input, select) {
     padding: 0.5em;
     border-radius: 0.25em;
@@ -76,14 +96,15 @@ h1 {
 
 form {
     display: grid;
+    grid-auto-rows: auto 1fr;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1em;
+    gap: 0.5em 1em;
 
     button {
         grid-column: span 2;
         padding: 0.5em 1.5em;
-        background-color: var(--color-accent-bg-100);
-        color: var(--color-accent-fg-600);
+        background-color: var(--color-accent-bg-600);
+        color: var(--color-card);
         text-align: center;
         text-transform: uppercase;
         cursor: pointer;
@@ -91,21 +112,20 @@ form {
         &:where(:hover, :focus-visible) {
             background-color: color-mix(
                 in oklab,
-                var(--color-accent-bg-100),
-                transparent 50%
+                var(--color-accent-bg-600),
+                #fff 15%
             );
         }
     }
-}
 
-.form-control {
-    display: grid;
-    gap: 0.5em;
-}
+    .form-control {
+        grid-row: span 2;
+        grid-template-rows: subgrid;
 
-.card {
-    padding: 1em 1.5em;
-    background-color: var(--color-card);
+        label {
+            align-self: end;
+        }
+    }
 }
 
 #alert {
@@ -136,4 +156,11 @@ form {
             aspect-ratio: 1;
         }
     }
+}
+
+.sorting {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: end;
+    margin-block-end: 1em;
 }

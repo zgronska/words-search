@@ -6,39 +6,43 @@
         <title>Words search</title>
     </head>
     <body>
-        <h1>Words search</h1>
-        <form class="card">
-            <div class="form-control">
-                <label for="letters">Letters</label>
-                <input id="letters" name="letters" required />
+        <main class="container">
+            <h1>Words search</h1>
+            <form class="card">
+                <div class="form-control">
+                    <label for="letters">Letters</label>
+                    <input id="letters" name="letters" required />
+                </div>
+                <div class="form-control">
+                    <label for="required-letter">
+                        Letter the word must contain
+                    </label>
+                    <input id="required-letter" name="required-letter" />
+                </div>
+                <div class="form-control">
+                    <label for="length">Minimum word length</label>
+                    <input id="length" type="number" min="3" name="length" />
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div class="results card">
+                <div class="form-control sorting">
+                    <label for="sorting">Sorting</label>
+                    <select name="sorting" id="sorting">
+                        <option value="alphabetical-asc">
+                            Alphabetical (asc)
+                        </option>
+                        <option value="alphabetical-desc">
+                            Alphabetical (desc)
+                        </option>
+                        <option value="length-asc">Length (asc)</option>
+                        <option value="length-desc">Length (desc)</option>
+                    </select>
+                </div>
+                <ol id="result"></ol>
+                <p id="alert"></p>
             </div>
-            <div class="form-control">
-                <label for="required-letter">
-                    Letter the word must contain
-                </label>
-                <input id="required-letter" name="required-letter" />
-            </div>
-            <div class="form-control">
-                <label for="length">Minimum word length</label>
-                <input id="length" type="number" min="3" name="length" />
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        <div class="results card">
-            <div class="form-control">
-                <label for="sorting">Sorting</label>
-                <select name="sorting" id="sorting">
-                    <option value="alphabetical-asc">Alphabetical (asc)</option>
-                    <option value="alphabetical-desc">
-                        Alphabetical (desc)
-                    </option>
-                    <option value="length-asc">Length (asc)</option>
-                    <option value="length-desc">Length (desc)</option>
-                </select>
-            </div>
-            <ol id="result"></ol>
-            <p id="alert"></p>
-        </div>
+        </main>
         <script type="module" src="/src/main.js"></script>
     </body>
 </html>
