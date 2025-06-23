@@ -5,12 +5,13 @@ const list = document.getElementById('result')
 const alert = document.getElementById('alert')
 
 const getWords = (letters, length, requiredLetter = null) => {
+    const allowedLetters = new Set([...letters, requiredLetter].filter(Boolean))
     return words
         .filter((word) => word.length >= length)
         .filter((word) =>
             requiredLetter ? word.includes(requiredLetter) : true
         )
-        .filter((word) => letters.every((letter) => word.includes(letter)))
+        .filter((word) => [...word].every((char) => allowedLetters.has(char)))
 }
 
 const onFormSubmit = (event) => {
