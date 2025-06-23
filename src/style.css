@@ -1,4 +1,5 @@
 :root {
+    --font-family: 'Quicksand Variable', sans-serif;
     @media (prefers-color-scheme: light) {
         --color-canvas: #f2eef0;
         --color-card: #f8f5f6;
@@ -42,6 +43,7 @@ body {
     block-size: 100%;
     background-color: var(--color-canvas);
     color: var(--color-neutral-fg-600);
+    font-family: var(--font-family);
     line-height: 1.5;
     place-items: center;
 }
