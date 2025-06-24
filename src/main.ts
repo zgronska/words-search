@@ -49,15 +49,14 @@ const onFormSubmit = (event: SubmitEvent) => {
         alert.textContent = `No words found with the given parameters`
     } else {
         list.innerHTML = result.map((word) => `<li>${word}</li>`).join('')
+        sort(sorting.value)
     }
 }
 
 /**
  * Sorts the list of words displayed on the page based on the selected sorting option.
  */
-const sort = (event: Event) => {
-    const target = event.target as HTMLSelectElement
-    const sortBy = target.value
+const sort = (sortBy: string) => {
     const listItems = Array.from(list.children)
     listItems.sort((a, b) => {
         const aText = a.textContent || ''
@@ -139,4 +138,4 @@ form.addEventListener(
         submit.disabled = !isFormValid
     })
 )
-sorting.addEventListener('change', sort)
+sorting.addEventListener('change', (e: Event) => sort(e?.target?.value))
