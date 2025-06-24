@@ -1,25 +1,24 @@
-import '@fontsource-variable/quicksand'
+import '@fontsource-variable/quicksand/wght.css'
 import './reset.css'
 import './style.css'
 import words from 'an-array-of-english-words'
 
-const form = document.querySelector('form')
-const list = document.getElementById('result')
-const alert = document.getElementById('alert')
-const sorting = document.getElementById('sorting')
+const form = document.querySelector('form') as HTMLFormElement
+const list = document.getElementById('result') as HTMLOListElement
+const alert = document.getElementById('alert') as HTMLParagraphElement
+const sorting = document.getElementById('sorting') as HTMLSelectElement
 
 /**
  * Filters the list of words to those that
  *  1. Are at least as long as the given length
  *  2. Contain the given required letter, if any
  *  3. Only contain letters from the given set of letters
- *
- * @param {string} letters The set of allowed letters
- * @param {number} length The minimum length of the words
- * @param {string?} requiredLetter A letter the words must contain
- * @returns {string[]} The filtered list of words
  */
-const getWords = (letters, length, requiredLetter = null) => {
+const getWords = (
+    letters: Array<string>,
+    length: number,
+    requiredLetter: string | null = null
+): Array<string> => {
     const allowedLetters = new Set([...letters, requiredLetter].filter(Boolean))
     return words
         .filter((word) => word.length >= length)
@@ -31,20 +30,17 @@ const getWords = (letters, length, requiredLetter = null) => {
 
 /**
  * Handles the form submission
- *
- * @param {Event} event The submit event
- *
- * @returns {void}
  */
-const onFormSubmit = (event) => {
+const onFormSubmit = (event: SubmitEvent) => {
     list.innerHTML = ''
     alert.textContent = ''
     event.preventDefault()
+
     const formData = new FormData(form)
 
-    const letters = Array.from(formData.get('letters'))
-    const length = formData.get('length') || 3
-    const requiredLetter = formData.get('required-letter')
+    const letters = Array.from(formData.get('letters') as string)
+    const length = parseInt(formData.get('length') as string) || 3
+    const requiredLetter = formData.get('required-letter') as string | null
 
     const result = getWords(letters, length, requiredLetter)
     if (result.length === 0) {
@@ -56,22 +52,24 @@ const onFormSubmit = (event) => {
 
 /**
  * Sorts the list of words displayed on the page based on the selected sorting option.
- *
- * @param {Event} event The change event triggered by selecting a sorting option.
  */
-const sort = (event) => {
-    const sortBy = event.target.value
+const sort = (event: Event) => {
+    const target = event.target as HTMLSelectElement
+    const sortBy = target.value
     const listItems = Array.from(list.children)
     listItems.sort((a, b) => {
+        const aText = a.textContent || ''
+        const bText = b.textContent || ''
         if (sortBy === 'alphabetical-asc') {
-            return a.textContent.localeCompare(b.textContent)
+            return aText.localeCompare(bText)
         } else if (sortBy === 'alphabetical-desc') {
-            return b.textContent.localeCompare(a.textContent)
+            return bText.localeCompare(aText)
         } else if (sortBy === 'length-asc') {
-            return a.textContent.length - b.textContent.length
+            return aText.length - bText.length
         } else if (sortBy === 'length-desc') {
-            return b.textContent.length - a.textContent.length
+            return bText.length - aText.length
         }
+        return 0
     })
     list.innerHTML = listItems.map((item) => item.outerHTML).join('')
 }
