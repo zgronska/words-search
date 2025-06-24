@@ -214,3 +214,56 @@ form {
     justify-content: end;
     margin-block-end: 1em;
 }
+
+select,
+::picker(select) {
+    appearance: base-select;
+    border: none;
+}
+
+select {
+    &::picker-icon {
+        content: '▽';
+        align-self: center;
+        transition: 0.4s rotate;
+        color: currentColor;
+        font-size: 0.75em;
+    }
+
+    &:open::picker-icon {
+        rotate: 180deg;
+    }
+}
+
+option {
+    display: flex;
+    padding: 0.5em;
+    border: 1px solid var(--color-card);
+    background-color: var(--color-accent-bg-300);
+    color: var(--color-card);
+    font-size: 0.8em;
+    gap: 1em;
+
+    &:not(option:last-of-type) {
+        border-block-end: none;
+    }
+
+    &:nth-of-type(odd) {
+        background-color: var(--color-accent-bg-100);
+    }
+
+    &:is(:hover, :focus-visible) {
+        background-color: var(--color-accent-bg-600);
+    }
+
+    &:checked {
+        font-weight: bolder;
+    }
+
+    &::checkmark {
+        content: '✔';
+        order: 1;
+        margin-inline-start: auto;
+        font-weight: 100;
+    }
+}
