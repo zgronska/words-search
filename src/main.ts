@@ -79,7 +79,10 @@ const sort = (event: Event) => {
 /**
  * Checks if the given input element has an error.
  */
-const hasError = (input: HTMLInputElement): boolean => {
+const hasError = (
+    input: HTMLInputElement,
+    updateValidation: boolean = false
+): boolean => {
     const value = input.value
     const id = input.id
 
@@ -88,7 +91,9 @@ const hasError = (input: HTMLInputElement): boolean => {
     ) as HTMLElement
 
     if (!value) {
-        validationEl.textContent = input.required ? 'Field is required' : ''
+        if (updateValidation) {
+            validationEl.textContent = input.required ? 'Field is required' : ''
+        }
         return input.required
     }
 
@@ -109,9 +114,11 @@ const hasError = (input: HTMLInputElement): boolean => {
 
     const error = !mapping[id as keyof typeof mapping].regex.test(value)
 
-    validationEl.textContent = error
-        ? mapping[id as keyof typeof mapping].message
-        : ''
+    if (updateValidation) {
+        validationEl.textContent = error
+            ? mapping[id as keyof typeof mapping].message
+            : ''
+    }
 
     return error
 }
@@ -120,8 +127,16 @@ form.addEventListener('submit', onFormSubmit)
 form.addEventListener(
     'input',
     debounce(function (e: Event) {
-        const target = e.target as HTMLInputElement
-        submit.toggleAttribute('disabled', hasError(target))
+        let isFormValid =
+            Array.from(form.querySelectorAll('input')).filter(
+                (input) => input !== e.target && hasError(input)
+            ).length === 0
+
+        if (hasError(e.target as HTMLInputElement, true)) {
+            isFormValid = false
+        }
+
+        submit.disabled = !isFormValid
     })
 )
 sorting.addEventListener('change', sort)
