@@ -53,6 +53,7 @@ body {
 
 .container {
     inline-size: min(100% - 2em, 50em);
+    padding-block: 2em;
 
     > * + * {
         margin-block-start: 1.5em;
