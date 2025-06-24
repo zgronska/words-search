@@ -172,6 +172,12 @@ form {
     }
 }
 
+.results {
+    &:not(:has(:where(ol, p):not(:empty))) {
+        display: none;
+    }
+}
+
 #alert {
     color: var(--color-accent-fg-300);
 }
