@@ -59,7 +59,7 @@ body {
     }
 }
 
-:empty:where(p, ul, ol) {
+:empty:where(p, ul, ol, small) {
     display: none;
 }
 
@@ -130,6 +130,24 @@ form {
 
         label {
             align-self: end;
+        }
+    }
+}
+
+[data-validation] {
+    &:not(:empty) {
+        display: inline-block;
+        padding: 0.2em 0.5em;
+        border: 1px dashed var(--color-accent-bg-300);
+        color: var(--color-neutral-fg-300);
+        font-size: 0.75em;
+        justify-self: end;
+
+        &::before {
+            content: '!';
+            display: inline-block;
+            margin-inline-end: 0.5em;
+            color: var(--color-accent-fg-300);
         }
     }
 }
