@@ -98,6 +98,11 @@ h1 {
     &:where(:focus-visible, :hover) {
         background-color: var(--color-neutral-bg-100);
     }
+
+    &::placeholder {
+        color: var(--color-neutral-fg-300);
+        font-size: 0.75em;
+    }
 }
 
 form {

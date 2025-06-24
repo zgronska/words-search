@@ -11,22 +11,34 @@
             <form class="card">
                 <div class="form-control">
                     <label for="letters">Letters</label>
-                    <input id="letters" name="letters" required />
+                    <input
+                        id="letters"
+                        name="letters"
+                        required
+                        placeholder="abcd" />
                     <small data-validation></small>
                 </div>
                 <div class="form-control">
                     <label for="required-letter">
                         Letter the word must contain
                     </label>
-                    <input id="required-letter" name="required-letter" />
+                    <input
+                        id="required-letter"
+                        name="required-letter"
+                        placeholder="e" />
                     <small data-validation></small>
                 </div>
                 <div class="form-control">
                     <label for="length">Minimum word length</label>
-                    <input id="length" type="number" min="3" name="length" />
+                    <input
+                        id="length"
+                        type="number"
+                        min="3"
+                        name="length"
+                        placeholder="3" />
                     <small data-validation></small>
                 </div>
-                <button type="submit">Submit</button>
+                <button disabled type="submit">Submit</button>
             </form>
             <div class="results card">
                 <div class="form-control sorting">
