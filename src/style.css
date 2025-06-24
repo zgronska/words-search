@@ -102,8 +102,9 @@ h1 {
 
 form {
     display: grid;
-    grid-auto-rows: auto 1fr minmax(1lh, auto);
+    grid-auto-rows: repeat(2, auto 1fr auto);
     grid-template-columns: repeat(2, 1fr);
+    transition: grid-template-rows 0.3s ease;
     gap: 0.5em 1em;
 
     button {
@@ -121,6 +122,12 @@ form {
                 var(--color-accent-bg-600),
                 #fff 15%
             );
+        }
+
+        &:where(:disabled) {
+            background-color: var(--color-accent-bg-100);
+            color: var(--color-neutral-fg-300);
+            cursor: not-allowed;
         }
     }
 
